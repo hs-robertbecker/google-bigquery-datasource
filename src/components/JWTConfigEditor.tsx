@@ -9,11 +9,12 @@ type JWTConfigDTO = Record<JWTConfigKeys, string>;
 
 export interface Props {
   onChange: (config: JWTConfigDTO) => void;
+  showConfigEditor: () => void;
 }
 
 const INVALID_JWT_TOKEN_ERROR = 'Invalid JWT token';
 
-export const JWTConfigEditor: React.FC<Props> = ({ onChange }) => {
+export const JWTConfigEditor: React.FC<Props> = ({ onChange, showConfigEditor }) => {
   const [error, setError] = useState<string | null>();
   const [isPasting, setIsPasting] = useState<boolean | null>(null);
   const theme = useTheme2();
@@ -108,7 +109,8 @@ export const JWTConfigEditor: React.FC<Props> = ({ onChange }) => {
       </Field>
 
       {!isPasting && (
-        <Field>
+        <>
+          {/* <Field> */}
           <Button
             data-testid={TEST_IDS.pasteJwtButton}
             type="button"
@@ -118,7 +120,20 @@ export const JWTConfigEditor: React.FC<Props> = ({ onChange }) => {
           >
             Paste JWT Token
           </Button>
-        </Field>
+          <span style={{ "paddingRight": "10px", "paddingLeft": "10px" }}>or</span>
+          {/* </Field> */}
+          {/* <Field> */}
+          <Button
+            // data-testid={TEST_IDS.pasteJwtButton}
+            type="button"
+            fill="outline"
+            style={{ color: `${theme.colors.primary.text}` }}
+            onClick={showConfigEditor}
+          >
+            Fill In JWT Token manually
+          </Button>
+          {/* </Field> */}
+        </>
       )}
 
       {isPasting && error && (
