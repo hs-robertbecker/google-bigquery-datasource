@@ -16,7 +16,7 @@ type BigQuerySettings struct {
 	ProcessingLocation string `json:"processingLocation"`
 	Updated            time.Time
 	AuthenticationType string `json:"authenticationType"`
-	PrivateKeyFile     string `json:"privateKeyFile"`
+	PrivateKeyPath     string `json:"privateKeyPath"`
 
 	// Saved in secure JSON
 	PrivateKey string `json:"-"`

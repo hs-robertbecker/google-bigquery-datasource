@@ -218,7 +218,7 @@ describe('ConfigEditor', () => {
               clientEmail: 'test@grafana.com',
               tokenUri: 'https://accounts.google.com/o/oauth2/token',
               defaultProject: 'test-project',
-              privateKeyFile: 'private/key/path'
+              privateKeyPath: 'private/key/path'
             },
           } as unknown) as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }

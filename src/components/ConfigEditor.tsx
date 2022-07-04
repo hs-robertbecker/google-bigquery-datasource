@@ -32,7 +32,7 @@ export const BigQueryConfigEditor: React.FC<BigQueryConfigEditorProps> = (props)
       jsonData.clientEmail &&
       jsonData.defaultProject &&
       jsonData.tokenUri &&
-      ((secureJsonFields && secureJsonFields.privateKey) || jsonData.privateKeyFile)
+      ((secureJsonFields && secureJsonFields.privateKey) || jsonData.privateKeyPath)
     )
   )
 
@@ -53,7 +53,7 @@ export const BigQueryConfigEditor: React.FC<BigQueryConfigEditorProps> = (props)
     delete nextJsonData.clientEmail;
     delete nextJsonData.defaultProject;
     delete nextJsonData.tokenUri;
-    delete nextJsonData.privateKeyFile;
+    delete nextJsonData.privateKeyPath;
     delete nextSecureJsonData.privateKey;
 
     setJWTAuth(true)

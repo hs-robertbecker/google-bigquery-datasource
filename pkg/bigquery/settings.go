@@ -39,10 +39,10 @@ func LoadSettings(config *backend.DataSourceInstanceSettings) (types.BigQuerySet
 		return settings, fmt.Errorf("could not unmarshal DataSourceInfo json: %w", err)
 	}
 
-	// Check if a private key file was provided. Always fall back to the plugin's default method
+	// Check if a private key path was provided. Fall back to the plugin's default method
 	// of an inline private key
-	if settings.PrivateKeyFile != "" {
-		privateKey, err := readPrivateKeyFromFile(settings.PrivateKeyFile)
+	if settings.PrivateKeyPath != "" {
+		privateKey, err := readPrivateKeyFromFile(settings.PrivateKeyPath)
 		if err != nil {
 			return settings, fmt.Errorf("could not write private key to DataSourceInfo json: %w", err)
 		}

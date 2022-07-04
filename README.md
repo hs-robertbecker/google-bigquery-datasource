@@ -68,7 +68,7 @@ datasources:
 ```
 
 ```yaml
-# config file version (with private key file in jsonData)
+# config file version (with private key path in jsonData)
 apiVersion: 1
 datasources:
   - name: BigQuery DS
@@ -80,7 +80,7 @@ datasources:
       clientEmail: your-client-email
       defaultProject: your-default-bigquery-project
       tokenUri: https://oauth2.googleapis.com/token
-      privateKeyFile: '/etc/secrets/bigquery.pem'
+      privateKeyPath: '/etc/secrets/bigquery.pem'
 ```
 
 #### Using Google Metadata Server

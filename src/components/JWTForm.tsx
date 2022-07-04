@@ -15,7 +15,7 @@ enum PrivateKeyConfig {
 }
 
 const getInitialPrivateKeyConfig = (options: BigQueryOptions): PrivateKeyConfig => {
-  return 'privateKeyFile' in options && options.privateKeyFile !== ''
+  return 'privateKeyPath' in options && options.privateKeyPath !== ''
     ? PrivateKeyConfig.PATH
     : PrivateKeyConfig.JWT
 }
@@ -69,8 +69,8 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
             <Input
               width={60}
               id="privateKeyPath"
-              value={options.privateKeyFile || ''}
-              onChange={onChange('privateKeyFile')}
+              value={options.privateKeyPath || ''}
+              onChange={onChange('privateKeyPath')}
               data-testid={TEST_IDS.privateKeyPathInput}
             />
           </Field>
@@ -89,7 +89,7 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
               width={60}
               id="privateKey"
               readOnly
-              placeholder={options.privateKeyFile === '' ? "Private key configured" : ""}
+              placeholder={options.privateKeyPath === '' ? "Private key configured" : ""}
               data-testid={TEST_IDS.privateKeyInput}
               addonAfter={
                 <Tooltip content="Click to clear the uploaded JWT token and upload a new one">
