@@ -31,6 +31,12 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
     }
   }
 
+  const Description = (
+    <span>Paste private key or &nbsp;
+      <a className="external-link" onClick={togglePrivateKeyFields} data-testid={TEST_IDS.linkPrivateKeyPath}>provide path to private file</a>
+    </span>
+  )
+
   return (
     <div data-testid={TEST_IDS.jwtForm}>
       <Field label="Project ID">
@@ -60,7 +66,13 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
             description="File location of your private key (e.g. /etc/secrets/bigquery.pem)"
           >
             {/* @ts-ignore */}
-            <Input width={60} id="privateKeyPath" value={options.privateKeyFile || ''} onChange={onChange('privateKeyFile')} />
+            <Input
+              width={60}
+              id="privateKeyPath"
+              value={options.privateKeyFile || ''}
+              onChange={onChange('privateKeyFile')}
+              data-testid={TEST_IDS.privateKeyPathInput}
+            />
           </Field>
         )
       }
@@ -69,7 +81,7 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
         privateKeyConfig === PrivateKeyConfig.JWT && (
           <Field
             label="Private key"
-            description={<span>Paste private key or <a className="external-link" onClick={togglePrivateKeyFields}>provide path to private file</a></span>}
+            description={Description}
             disabled
           >
             {/* @ts-ignore */}
@@ -78,6 +90,7 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
               id="privateKey"
               readOnly
               placeholder={options.privateKeyFile === '' ? "Private key configured" : ""}
+              data-testid={TEST_IDS.privateKeyInput}
               addonAfter={
                 <Tooltip content="Click to clear the uploaded JWT token and upload a new one">
                   <Button data-testid={TEST_IDS.resetJwtButton} icon="sync" size="xs" onClick={onReset} fill="outline">
