@@ -28,7 +28,7 @@ describe('ConfigEditor', () => {
             jsonData: {},
           } as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }
-        onOptionsChange={() => { }}
+        onOptionsChange={() => {}}
       />
     );
 
@@ -43,7 +43,7 @@ describe('ConfigEditor', () => {
             jsonData: {},
           } as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }
-        onOptionsChange={() => { }}
+        onOptionsChange={() => {}}
       />
     );
 
@@ -58,7 +58,7 @@ describe('ConfigEditor', () => {
             jsonData: {},
           } as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }
-        onOptionsChange={() => { }}
+        onOptionsChange={() => {}}
       />
     );
     const pasteButton = getByTestId(TEST_IDS.pasteJwtButton);
@@ -197,7 +197,7 @@ describe('ConfigEditor', () => {
             },
           } as unknown) as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }
-        onOptionsChange={() => { }}
+        onOptionsChange={() => {}}
       />
     );
 
@@ -208,7 +208,6 @@ describe('ConfigEditor', () => {
     expect(screen.queryByTestId(TEST_IDS.privateKeyPathInput)).not.toBeInTheDocument();
   });
 
-
   it('renders JWT form when data is provided (with private key path)', () => {
     render(
       <BigQueryConfigEditor
@@ -218,11 +217,11 @@ describe('ConfigEditor', () => {
               clientEmail: 'test@grafana.com',
               tokenUri: 'https://accounts.google.com/o/oauth2/token',
               defaultProject: 'test-project',
-              privateKeyPath: 'private/key/path'
+              privateKeyPath: 'private/key/path',
             },
           } as unknown) as DataSourceSettings<BigQueryOptions, BigQuerySecureJsonData>
         }
-        onOptionsChange={() => { }}
+        onOptionsChange={() => {}}
       />
     );
 

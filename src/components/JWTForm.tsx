@@ -10,32 +10,33 @@ interface JWTFormProps {
 }
 
 enum PrivateKeyConfig {
-  PATH = "path",
-  JWT = 'jwt'
+  PATH = 'path',
+  JWT = 'jwt',
 }
 
 const getInitialPrivateKeyConfig = (options: BigQueryOptions): PrivateKeyConfig => {
-  return 'privateKeyPath' in options && options.privateKeyPath !== ''
-    ? PrivateKeyConfig.PATH
-    : PrivateKeyConfig.JWT
-}
+  return 'privateKeyPath' in options && options.privateKeyPath !== '' ? PrivateKeyConfig.PATH : PrivateKeyConfig.JWT;
+};
 
 export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) => {
-  const [privateKeyConfig, setPrivateKeyConfig] = React.useState<PrivateKeyConfig>(getInitialPrivateKeyConfig(options))
+  const [privateKeyConfig, setPrivateKeyConfig] = React.useState<PrivateKeyConfig>(getInitialPrivateKeyConfig(options));
 
   const togglePrivateKeyFields = (): void => {
     if (privateKeyConfig === PrivateKeyConfig.JWT) {
-      setPrivateKeyConfig(PrivateKeyConfig.PATH)
+      setPrivateKeyConfig(PrivateKeyConfig.PATH);
     } else {
-      setPrivateKeyConfig(PrivateKeyConfig.JWT)
+      setPrivateKeyConfig(PrivateKeyConfig.JWT);
     }
-  }
+  };
 
   const Description = (
-    <span>Paste private key or &nbsp;
-      <a className="external-link" onClick={togglePrivateKeyFields} data-testid={TEST_IDS.linkPrivateKeyPath}>provide path to private file</a>
+    <span>
+      Paste private key or &nbsp;
+      <a className="external-link" onClick={togglePrivateKeyFields} data-testid={TEST_IDS.linkPrivateKeyPath}>
+        provide path to private file
+      </a>
     </span>
-  )
+  );
 
   return (
     <div data-testid={TEST_IDS.jwtForm}>
@@ -59,49 +60,41 @@ export const JWTForm: React.FC<JWTFormProps> = ({ options, onReset, onChange }) 
         <Input width={60} id="tokenUri" value={options.tokenUri || ''} onChange={onChange('tokenUri')} />
       </Field>
 
-      {
-        privateKeyConfig === PrivateKeyConfig.PATH && (
-          <Field
-            label="Private key path"
-            description="File location of your private key (e.g. /etc/secrets/bigquery.pem)"
-          >
-            {/* @ts-ignore */}
-            <Input
-              width={60}
-              id="privateKeyPath"
-              value={options.privateKeyPath || ''}
-              onChange={onChange('privateKeyPath')}
-              data-testid={TEST_IDS.privateKeyPathInput}
-            />
-          </Field>
-        )
-      }
+      {privateKeyConfig === PrivateKeyConfig.PATH && (
+        <Field
+          label="Private key path"
+          description="File location of your private key (e.g. /etc/secrets/bigquery.pem)"
+        >
+          {/* @ts-ignore */}
+          <Input
+            width={60}
+            id="privateKeyPath"
+            value={options.privateKeyPath || ''}
+            onChange={onChange('privateKeyPath')}
+            data-testid={TEST_IDS.privateKeyPathInput}
+          />
+        </Field>
+      )}
 
-      {
-        privateKeyConfig === PrivateKeyConfig.JWT && (
-          <Field
-            label="Private key"
-            description={Description}
-            disabled
-          >
-            {/* @ts-ignore */}
-            <Input
-              width={60}
-              id="privateKey"
-              readOnly
-              placeholder={options.privateKeyPath === '' ? "Private key configured" : ""}
-              data-testid={TEST_IDS.privateKeyInput}
-              addonAfter={
-                <Tooltip content="Click to clear the uploaded JWT token and upload a new one">
-                  <Button data-testid={TEST_IDS.resetJwtButton} icon="sync" size="xs" onClick={onReset} fill="outline">
-                    Reset token
-                  </Button>
-                </Tooltip>
-              }
-            />
-          </Field>
-        )
-      }
+      {privateKeyConfig === PrivateKeyConfig.JWT && (
+        <Field label="Private key" description={Description} disabled>
+          {/* @ts-ignore */}
+          <Input
+            width={60}
+            id="privateKey"
+            readOnly
+            placeholder={options.privateKeyPath === '' ? 'Private key configured' : ''}
+            data-testid={TEST_IDS.privateKeyInput}
+            addonAfter={
+              <Tooltip content="Click to clear the uploaded JWT token and upload a new one">
+                <Button data-testid={TEST_IDS.resetJwtButton} icon="sync" size="xs" onClick={onReset} fill="outline">
+                  Reset token
+                </Button>
+              </Tooltip>
+            }
+          />
+        </Field>
+      )}
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const JWTConfigEditor: React.FC<Props> = ({ onChange, showConfigEditor })
         const validation = validateJWT(jwt);
 
         if (validation.isValid) {
-          showConfigEditor()
+          showConfigEditor();
           onChange({
             privateKey: jwt.private_key,
             tokenUri: jwt.token_uri,
@@ -60,7 +60,7 @@ export const JWTConfigEditor: React.FC<Props> = ({ onChange, showConfigEditor })
         }
       }
     },
-    [setError, onChange]
+    [setError, onChange, showConfigEditor]
   );
 
   return (
@@ -120,7 +120,7 @@ export const JWTConfigEditor: React.FC<Props> = ({ onChange, showConfigEditor })
           >
             Paste JWT Token
           </Button>
-          <span style={{ "paddingRight": "10px", "paddingLeft": "10px" }}>or</span>
+          <span style={{ paddingRight: '10px', paddingLeft: '10px' }}>or</span>
           <Button
             data-testid={TEST_IDS.fillJwtManuallyButton}
             type="button"

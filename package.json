@@ -11,7 +11,10 @@
     "test:jest": "jest --config jest.config.js",
     "test:watch": "grafana-toolkit plugin:test  --watch",
     "test:codecov": "jest --config jest.config.js && codecov",
-    "build:sign": "yarn run build && yarn run sign"
+    "build:sign": "yarn run build && yarn run sign",
+    "lint": "yarn run lint:ts",
+    "lint:ts": "eslint . --ext .js,.tsx,.ts --cache",
+    "lint:fix": "yarn lint:ts --fix"
   },
   "author": "Grafana Labs <team@grafana.com> (https://grafana.com)",
   "license": "MIT",

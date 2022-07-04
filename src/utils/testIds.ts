@@ -10,5 +10,5 @@ export const TEST_IDS = {
   privateKeyInput: 'Private Key Input',
   privateKeyPathInput: 'Private Key Path Input',
   fillJwtManuallyButton: 'Fill JWT info manually',
-  linkPrivateKeyPath: 'Show private key path input'
+  linkPrivateKeyPath: 'Show private key path input',
 };
